@@ -1,2 +1,2 @@
 # leetcode-typescript
-学习算法熟悉typescript
+学习typescript同时温习算法
