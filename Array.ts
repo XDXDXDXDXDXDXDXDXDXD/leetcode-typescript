@@ -2,13 +2,19 @@
   数组类
  */
 
+function swap(nums: number[],a: number,b: number) : void {
+  let temp =  nums[a]
+  nums[a] = nums[b]
+  nums[b] = temp
+}
+
 /**
  * 买卖股票的最佳时机2
  * @param prices 股票信息数组
  */
 function maxProfit(prices: number[]): number {
 
-  let res : number = 0
+  let res: number = 0
   for (let i = 0; i < prices.length; ++i) {
     if (prices[i] < prices[i + 1]) {
       res += prices[i + 1] - prices[i]
@@ -25,7 +31,7 @@ function maxProfit(prices: number[]): number {
 function moveZeroes(nums: number[]): void {
 
   let left = 0, right = 0;
-  while(right < nums.length) {
+  while (right < nums.length) {
     if (nums[right] !== 0) {
       let temp = nums[right]
       nums[right] = nums[left]
@@ -74,7 +80,7 @@ function removeDuplicates2(nums: number[]): number {
     if (nums[j] === nums[i] && !flag) {
       nums[++i] = nums[j]
       flag++
-    } else if(nums[j] === nums[i] && flag) {
+    } else if (nums[j] === nums[i] && flag) {
       flag++
     } else {
       nums[++i] = nums[j]
@@ -83,3 +89,25 @@ function removeDuplicates2(nums: number[]): number {
   }
   return i + 1
 }
+
+/**
+ * 颜色分类(三指针)
+ * @param nums
+ * left负责0,right负责2,0,2排好后1自然排好,注意边界条件
+ */
+function sortColors(nums: number[]): void {
+
+  let cur = 0, left = 0, right = nums.length - 1
+  while (left < right && cur <= right) {
+    if (nums[cur] == 1) {
+      cur++
+    } else if(nums[cur] == 2) {
+      swap(nums, cur, right--)
+    } else {
+      swap(nums, cur++, left++)
+    }
+  }
+}
+
+
+
