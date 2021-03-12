@@ -109,5 +109,21 @@ function sortColors(nums: number[]): void {
   }
 }
 
-
-
+/**
+ * 验证回文字符串
+ * @param s
+ */
+function isPalindrome(s: string): boolean {
+  let reg = /[a-zA-Z0-9]/
+  let left = 0, right = s.length - 1
+  while(left < right) {
+    while (!reg.test(s.charAt(left)) && left < right) left++
+    while(!reg.test(s.charAt(right)) && left < right) right--
+    if (s.charAt(left).toLowerCase() !== s.charAt(right).toLowerCase()) {
+      return false
+    }
+    left++
+    right--
+  }
+  return true
+}
