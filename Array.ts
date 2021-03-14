@@ -2,11 +2,12 @@
   数组类
  */
 
-function swap(nums: number[],a: number,b: number) : void {
-  let temp =  nums[a]
-  nums[a] = nums[b]
-  nums[b] = temp
+function swap(arr: any[],a: number,b: number) : void {
+  let temp =  arr[a]
+  arr[a] = arr[b]
+  arr[b] = temp
 }
+
 
 /**
  * 买卖股票的最佳时机2
@@ -126,4 +127,48 @@ function isPalindrome(s: string): boolean {
     right--
   }
   return true
+}
+
+/**
+ * 反转字符串中的元音字母
+ * @param s
+ */
+function reverseVowels(s: string): string {
+  const arr = s.split('')
+  const vowelSet = new Set()
+  vowelSet.add('a').add('e').add('i').add('o').add('u')
+  let left = 0, right = s.length - 1
+  while (left < right) {
+    if (vowelSet.has(arr[left].toLowerCase())) {
+      if (vowelSet.has(arr[right].toLowerCase())) {
+        swap(arr, left, right)
+        left++
+        right--
+      } else {
+        right--
+      }
+    } else {
+      left++
+    }
+  }
+  return arr.join('')
+}
+
+/**
+ * 盛最多水的容器
+ * 双指针，移动指针时总是应该移动较小值
+ * @param height
+ */
+function maxArea(height: number[]): number {
+  let left = 0, right = height.length - 1,
+    res = (right - left) * Math.min(height[left], height[right]),
+    temp
+  while (left < right) {
+    height[left] < height[right] ? left++ : right--
+    let min = Math.min(height[left], height[right]),
+      length = right - left
+    temp = min * length
+    res = Math.max(res, temp)
+  }
+  return res
 }
