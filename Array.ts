@@ -2,8 +2,8 @@
   数组类
  */
 
-function swap(arr: any[],a: number,b: number) : void {
-  let temp =  arr[a]
+function swap(arr: any[], a: number, b: number): void {
+  let temp = arr[a]
   arr[a] = arr[b]
   arr[b] = temp
 }
@@ -102,7 +102,7 @@ function sortColors(nums: number[]): void {
   while (left < right && cur <= right) {
     if (nums[cur] == 1) {
       cur++
-    } else if(nums[cur] == 2) {
+    } else if (nums[cur] == 2) {
       swap(nums, cur, right--)
     } else {
       swap(nums, cur++, left++)
@@ -117,9 +117,9 @@ function sortColors(nums: number[]): void {
 function isPalindrome(s: string): boolean {
   let reg = /[a-zA-Z0-9]/
   let left = 0, right = s.length - 1
-  while(left < right) {
+  while (left < right) {
     while (!reg.test(s.charAt(left)) && left < right) left++
-    while(!reg.test(s.charAt(right)) && left < right) right--
+    while (!reg.test(s.charAt(right)) && left < right) right--
     if (s.charAt(left).toLowerCase() !== s.charAt(right).toLowerCase()) {
       return false
     }
@@ -172,3 +172,43 @@ function maxArea(height: number[]): number {
   }
   return res
 }
+
+/**
+ * 数组中的第K个最大元素
+ * @param nums
+ * @param k
+ */
+function findKthLargest(nums: number[], k: number): number {
+  for (let i = 0; i < k; ++i) {
+    for (let j = 0; j < nums.length - i - 1; ++j) {
+      if (nums[j] > nums[j + 1]) {
+        swap(nums, j, j + 1)
+      }
+    }
+  }
+  return nums[nums.length - k]
+}
+
+/**
+ * 合并两个有序数组
+ * m,n是nums1,nums2的大小
+ * 你可以假设 nums1 的空间大小等于 m + n
+ * @param nums1  [1,3,5,7,9,15]
+ * @param m
+ * @param nums2  [2,4,6,8,10,12]
+ * @param n
+ */
+function merge(nums1: number[], m: number, nums2: number[], n: number): void {
+  let i = m - 1, j = n - 1, cur = m + n - 1
+  while (i >= 0 && j >= 0) {
+    nums1[cur--] = nums1[i] >= nums2[j] ? nums1[i--] : nums2[j--]
+  }
+  while (j >= 0) {
+    nums1[cur--] = nums2[j--]
+  }
+}
+
+let a1 = [1,3,5,7,9,0,0,0,0],
+  a2 = [2,4,6,8]
+merge(a1, 5, a2, 4)
+console.log(a1);
