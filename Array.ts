@@ -207,8 +207,3 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
     nums1[cur--] = nums2[j--]
   }
 }
-
-let a1 = [1,3,5,7,9,0,0,0,0],
-  a2 = [2,4,6,8]
-merge(a1, 5, a2, 4)
-console.log(a1);
