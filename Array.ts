@@ -193,9 +193,9 @@ function findKthLargest(nums: number[], k: number): number {
  * 合并两个有序数组
  * m,n是nums1,nums2的大小
  * 你可以假设 nums1 的空间大小等于 m + n
- * @param nums1  [1,3,5,7,9,15]
+ * @param nums1
  * @param m
- * @param nums2  [2,4,6,8,10,12]
+ * @param nums2
  * @param n
  */
 function merge(nums1: number[], m: number, nums2: number[], n: number): void {
