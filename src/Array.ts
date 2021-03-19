@@ -199,6 +199,7 @@ function findKthLargest(nums: number[], k: number): number {
  * @param n
  */
 function merge(nums1: number[], m: number, nums2: number[], n: number): void {
+  // 从后往前
   let i = m - 1, j = n - 1, cur = m + n - 1
   while (i >= 0 && j >= 0) {
     nums1[cur--] = nums1[i] >= nums2[j] ? nums1[i--] : nums2[j--]
@@ -206,4 +207,22 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
   while (j >= 0) {
     nums1[cur--] = nums2[j--]
   }
+}
+
+/**
+ * 多数元素
+ * 给定的数组总是存在多数元素
+ * 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素
+ * @param nums
+ */
+function majorityElement(nums: number[]): number {
+  let candidate = nums[0]
+  let count = 0
+  for (let i = 1; i < nums.length; ++i) {
+    nums[i] === candidate ? count++ : count--
+    if (count <= 0) {
+      candidate = nums[i]
+    }
+  }
+  return candidate
 }
